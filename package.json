@@ -1,0 +1,62 @@
+{
+  "name": "@serdnam/drizzle-orm-utilities",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/serdnam/drizzle-orm-utilities.git"
+  },
+  "description": "Miscellaneous helper functions and type utilities for Drizzle ORM",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsup && tsc -p tsconfig.build.json && node scripts/copy-dcts.mjs",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "check": "publint && attw --pack .",
+    "prepublishOnly": "npm run build && npm run typecheck && npm run check",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "node --strip-types tests/db/migrate.ts",
+    "db:studio": "drizzle-kit studio",
+    "db:reset": "docker compose down -v && docker compose up -d && node --strip-types tests/db/migrate.ts"
+  },
+  "peerDependencies": {
+    "drizzle-orm": "^1.0.0-beta.22"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.17.0",
+    "@types/node": "^24.0.0",
+    "drizzle-kit": "1.0.0-beta.22",
+    "drizzle-orm": "1.0.0-beta.22",
+    "postgres": "^3.4.9",
+    "publint": "^0.3.0",
+    "tsup": "^8.5.0",
+    "typescript": "^6.0.2",
+    "vitest": "^3.2.0"
+  }
+}
