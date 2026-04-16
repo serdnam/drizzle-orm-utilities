@@ -14,7 +14,7 @@
 | `npm run check` | Run publint + attw pre-publish validation |
 | `npm run db:up` | Start Postgres 17 via Docker Compose |
 | `npm run db:down` | Stop the DB container |
-| `npm run db:migrate` | Run migrations with `node --strip-types tests/db/migrate.ts` |
+| `npm run db:migrate` | Run migrations with `tsx tests/db/migrate.ts` |
 | `npm run db:reset` | **Destructive**: wipe volume, restart, and re-migrate |
 
 ## Repository structure
