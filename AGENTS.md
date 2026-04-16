@@ -29,7 +29,7 @@
 - CI runs on every push to `main` and every PR (`.github/workflows/ci.yml`). It uses a Postgres service container — no Docker Compose needed in CI.
 - Releases are triggered manually via **GitHub Actions → Publish → Run workflow**. Enter the version (e.g. `0.2.0`) and dist-tag (`latest` / `next` / `beta`). The workflow builds, type-checks, validates, tests, then commits the version bump, tags, pushes, publishes to npm, and creates a GitHub Release.
 - Use **Conventional Commits** for commit messages: `feat:` (minor), `fix:` (patch), `feat!:` / `BREAKING CHANGE:` (major), `chore:`/`docs:`/`ci:` (no bump). The maintainer chooses the version number when triggering the workflow — commit prefixes inform that decision.
-- **Never run `npm publish` locally.** The NPM token lives only in GitHub Secrets (`NPM_TOKEN`).
+- Packages are released using npm Trusted Publishing.
 
 ## Landmines
 
